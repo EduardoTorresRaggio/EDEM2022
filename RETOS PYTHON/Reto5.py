@@ -9,3 +9,6 @@ def Conocelenguaje():
   print(f"{Programas} : {respuesta}")
 
 Conocelenguaje()
+
+def Eliminarlenguaje():
+    if 
