@@ -14,17 +14,50 @@ for idx in enumerate(ListaDiscos):
 #NO FUNCIONA
 #for i,Disco in ListaDiscos:
   #print(f"{i}:Album{Disco['Nombre']}")
+carrito = list()
 
 #PEDIR SELECCION DISCO
-seleccion = int(input("Seleccionar un disco: "))
+while True:
+  seleccion = int(input("Seleccionar un disco: "))
+  if seleccion == -1:
+    break
+  else: 
+    carrito.append({ListaDiscos[seleccion]["Nombre"]},{ListaDiscos[seleccion]["Precio"]},{ListaDiscos[seleccion]["Genero"]})
+
+
+
 
 #IMPRIMIR EL DISCO SELECCIONADO
 print(ListaDiscos[seleccion]['Genero'])
 
-#SACAR EL PRECIO DEL DISCO SELECCIONADO
-if ListaDiscos[seleccion]['Genero'] == 'Electro' or ListaDiscos[seleccion]['Genero'] == 'Black Metal':
-  PrecioCarrito = ListaDiscos[seleccion]['Genero'] * 0.7
-else:
-  PrecioCarrito = ListaDiscos[seleccion]['Genero']
+#SACAR EL PRECIO DEL DISCO SELECCIONADO 
+#METODO 1
+for i in carrito:
+  if i['Genero'] == 'Electro' or i['Genero'] == 'Black Metal':
+    PrecioCarrito = i['precio'] * 0.7
+    cantidadDescuento = i['precio'] * 0.3
+  else:
+    PrecioCarrito = i['Genero']
 
 
+#METODO 2
+for i in range(len(carrito)):
+  if carrito[i]['estilo'] == 'Electro' or  carrito[i]['estilo'] == 'Black Metal':
+    PrecioCarrito = carrito[i]['precio' * 0.7]
+    cantidadDescuento = carrito [i]['precio'] * 0.3
+  else:
+    PrecioCarrito = carrito [i]
+
+#METODO 3A
+for idx,i in enumerate(carrito):
+  if carrito[idx]['estilo'] == 'Electro' or carrito[idx]['estilo'] == 'Black Metal':
+    PrecioCarrito = carrito[idx]['precio' * 0.7]
+    cantidadDescuento = carrito [idx]['precio'] * 0.3
+  else:
+    PrecioCarrito = carrito [idx]
+#METODO 3A  
+  if i['estilo'] == 'Electro' or i['estilo'] == 'Black Metal':
+    PrecioCarrito = carrito[i]['precio' * 0.7]
+    cantidadDescuento = carrito [i]['precio'] * 0.3
+  else:
+    PrecioCarrito = carrito [i]
