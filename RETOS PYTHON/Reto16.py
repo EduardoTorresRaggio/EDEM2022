@@ -1,9 +1,8 @@
 miLista = [(), (), ('',), ('a', 'b'), ('a', 'b', 'c'), ('d')]
 
 
-
+#QUIERO CONVERTIR ESTO A BUCLE
 '''
-
 if len(miLista[0]):
     print("no vacio")
 else:

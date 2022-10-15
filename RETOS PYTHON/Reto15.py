@@ -11,6 +11,12 @@ elif result1 == True:
 
 print (numeros)
 
+
+
+
+
+
+
 result2 = isinstance(numeros[2],int)
 print(result2)
 
@@ -20,6 +26,9 @@ elif result1 == True:
     pass
 
 print (numeros)
+
+#QUIERO PASAR LO ANTERIOR A UN BUCLE
+
 '''
 for i in numeros:
     result = isinstance(numeros,int)
