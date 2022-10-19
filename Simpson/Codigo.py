@@ -19,13 +19,16 @@ while True:
    
 
    if autor == 'Lisa':
+    #guardar la frase en csv de Lisa
     with open('lisa.csv', 'a', newline='') as csvfile:
      spamwriter = csv.writer(csvfile, delimiter=' ',
                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
      spamwriter.writerow(frase_simpson)
     print(frase_simpson)
     print(autor)
-   #guardar la frase en csv de Lisa
+    #guardar la imagen en carpeta de Lisa
+    
+   
     
     time.sleep(30)
 
