@@ -1,2 +1,11 @@
+
 import os
 print(os.getcwd())
+
+import random
+
+with os.scandir('C:\\Users\\sragg\\Documents\\GitHub\\EDEM2022\\Simpson') as ficheros:
+    for i in ficheros:
+        if i.name == autor:
+            
+
