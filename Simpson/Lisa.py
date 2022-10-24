@@ -24,6 +24,7 @@ while True:
   #y lo guardamos en una variable
    frase_simpson:str = datos[0]['quote']
    autor:str = datos[0]['character']
+   diccionario_palabras = {}
    
    
    #COMPROBACIÓN DE QUE FUNCIONA LA PETICION
@@ -34,6 +35,8 @@ while True:
    if (autor in autoresfrases):
     #autor ya existe
 
+    #################### CARPETA IMAGENES + DESCARGA ################
+    '''
     #descargar la imagen
     imagen = str(random.randint(0,100)) + "_" + 'imagen.png'
     image_url = datos[0]['image']
@@ -51,25 +54,32 @@ while True:
          direc3 = os.path.join(direc1,direc2)
          #mover la imagen descargada a la carpeta del autor
          shutil.move(imagen,direc3)
-
-   
-#PROBLEMA Nº1: COMO HACER QUE ESCRIBA EN EL CSV DEL AUTOR QUE ACABA DE SALIR
-    #escribir la frase en el CSV que ya se ha creado ANTES por AUTOR
+    '''
+     ######################  GUARDAR FRASE AUTOR  ####################
 
     #esta es la dirección del autor
-      direc = 'C:\\Users\\sragg\\Documents\\GitHub\\EDEM2022\\Simpson'
-      directory99 = autor
-      path99 = os.path.join(direc,directory99)
-      archivo = 'autor.csv'
+    direc = 'C:\\Users\\sragg\\Documents\\GitHub\\EDEM2022\\Simpson'
+    directory99 = autor
+    path99 = os.path.join(direc,directory99)
+    archivo = 'autor.csv'
     #esta es la ruta del archivo del autor
-      path98 = os.path.join(path99,archivo)
+    path98 = os.path.join(path99,archivo)
   
     #ir a esta ruta
     #quiero añadir una linea en el archivo 'autor.csv'
-      with open(path98,"a") as f:
+    with open(path98,"a") as f:
         f.write("\n")
         f.write(frase_simpson)
-        
+    
+     ####################### CONTEO PALABRAS ###############
+
+    for i in frase_simpson:
+      if i in diccionario_palabras:
+        #ya está palabra, por lo que suma 1
+        diccionario_palabras[i] += 1
+      else:
+        #no está palabra, definimos palabra y =1
+        diccionario_palabras [i] = 1
 
     #cada 30seg haga una peticion
     time.sleep(5)
@@ -78,6 +88,7 @@ while True:
    else:
     #autor no ha salido
     
+    #######################  CARPETA AUTOR  #################
 
     #añadir el autor a la lista
     autoresfrases.append(autor)
@@ -90,12 +101,16 @@ while True:
     path = os.path.join(parent_dir,directory)
     os.mkdir(path)
 
+    ######################  GUARDAR FRASE AUTOR  ############
+
     #crear archivo csv y guardar la frase
     with open("autor.csv", 'a', newline='') as f:
      f.write(frase_simpson)
 
-    #mover el archivo desde su posicion creada hasta carpeta (autor)
+     #mover el archivo desde su posicion creada hasta carpeta (autor)
     shutil.move("autor.csv",path)
+
+   #################### CARPETA IMAGENES + DESCARGA ########
 
     #crear carpeta imagenes dentro de autor
     directory1 = "imagenes"
@@ -111,5 +126,33 @@ while True:
     
     #mover la imagen descargada a la carpeta del autor
     shutil.move(imagen,path1)
+
+     ####################### CONTEO PALABRAS ###############
+
+     #contar palabras
+    '''
+    with open("autor.csv",'r', newline = '') as f:
+    f.read()
+    '''
+    
+    
+    palabras = frase_simpson.split(" ")
+    for i in palabras:
+      if i in diccionario_palabras:
+        #ya está palabra, por lo que suma 1
+        diccionario_palabras[i] += 1
+      else:
+        #no está palabra, definimos palabra y =1
+        diccionario_palabras [i] = 1
+    
+    #guardar el conteo
+    with open("Conteo",'w',newline='') as f:
+      f.write(f"{diccionario_palabras}")
+
+    #mover el diccionario al autor 
+    shutil.move("Conteo",path)
+
+    #muestre el conteo de palabras
+    print(diccionario_palabras)
 
     time.sleep(5)
