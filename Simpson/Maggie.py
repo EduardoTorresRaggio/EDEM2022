@@ -30,7 +30,7 @@ while True:
     
    
     
-    time.sleep(30)
+    time.sleep(3)
 
    elif autor == 'Homer Simpson':
     with open('Homer_Simpson.csv', 'a', newline='') as csvfile:
@@ -41,7 +41,7 @@ while True:
     print(autor)
     #guardar la frase en csv de Homer
     
-    time.sleep(30)
+    time.sleep(3)
   
    else:
     with open('General.csv', 'a', newline='') as csvfile:
@@ -53,4 +53,4 @@ while True:
     print('Es otro')
     #guardar la frase en csv de General
     
-    time.sleep(30)
+    time.sleep(3)
