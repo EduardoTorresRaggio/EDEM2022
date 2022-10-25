@@ -7,9 +7,27 @@ import time
 import os
 import shutil
 import random
+import string
+
+
+
+def contar_palabras(f,contword):
+  diccionario_palabras = contword
+  words = f.split()
+  for i in words:
+      if i in diccionario_palabras:
+        #ya está palabra, por lo que suma 1
+        diccionario_palabras[i] += 1
+      else:
+        #no está palabra, definimos palabra y =1
+        diccionario_palabras [i] = 1
+  return diccionario_palabras
 
 #LISTA VACIA PARA COMPROBAR SI EL AUTOR YA HA SALIDO
 autoresfrases =[]
+
+#inicializar el diccionario, si no da error
+contar = {}
 
 while True:
    URL= 'https://thesimpsonsquoteapi.glitch.me/quotes'
@@ -24,19 +42,27 @@ while True:
   #y lo guardamos en una variable
    frase_simpson:str = datos[0]['quote']
    autor:str = datos[0]['character']
-   diccionario_palabras = {}
-   
    
    #COMPROBACIÓN DE QUE FUNCIONA LA PETICION
    print(autor)
    print(frase_simpson)
    print(autoresfrases)
+   simbolos = '!"#$%&()*+,-./:;<=>?@[\]^_`{|}~'
+   new_frase = frase_simpson.translate(str.maketrans('','',simbolos))
+   contar = contar_palabras(new_frase,contar)
+   
+   print(contar)
+
+   with open('Simpson/diccionariospalabras.csv', 'w') as file:
+    writer = csv.writer(file,delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+    for key, value in contar.items():
+        writer.writerow((key, value))
 
    if (autor in autoresfrases):
     #autor ya existe
 
     #################### CARPETA IMAGENES + DESCARGA ################
-    '''
+    
     #descargar la imagen
     imagen = str(random.randint(0,100)) + "_" + 'imagen.png'
     image_url = datos[0]['image']
@@ -54,7 +80,7 @@ while True:
          direc3 = os.path.join(direc1,direc2)
          #mover la imagen descargada a la carpeta del autor
          shutil.move(imagen,direc3)
-    '''
+    
      ######################  GUARDAR FRASE AUTOR  ####################
 
     #esta es la dirección del autor
@@ -71,16 +97,6 @@ while True:
         f.write("\n")
         f.write(frase_simpson)
     
-     ####################### CONTEO PALABRAS ###############
-
-    for i in frase_simpson:
-      if i in diccionario_palabras:
-        #ya está palabra, por lo que suma 1
-        diccionario_palabras[i] += 1
-      else:
-        #no está palabra, definimos palabra y =1
-        diccionario_palabras [i] = 1
-
     #cada 30seg haga una peticion
     time.sleep(5)
    
@@ -126,33 +142,5 @@ while True:
     
     #mover la imagen descargada a la carpeta del autor
     shutil.move(imagen,path1)
-
-     ####################### CONTEO PALABRAS ###############
-
-     #contar palabras
-    '''
-    with open("autor.csv",'r', newline = '') as f:
-    f.read()
-    '''
-    
-    
-    palabras = frase_simpson.split(" ")
-    for i in palabras:
-      if i in diccionario_palabras:
-        #ya está palabra, por lo que suma 1
-        diccionario_palabras[i] += 1
-      else:
-        #no está palabra, definimos palabra y =1
-        diccionario_palabras [i] = 1
-    
-    #guardar el conteo
-    with open("Conteo",'w',newline='') as f:
-      f.write(f"{diccionario_palabras}")
-
-    #mover el diccionario al autor 
-    shutil.move("Conteo",path)
-
-    #muestre el conteo de palabras
-    print(diccionario_palabras)
 
     time.sleep(5)
