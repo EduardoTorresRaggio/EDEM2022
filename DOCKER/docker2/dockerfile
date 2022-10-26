@@ -1,5 +1,14 @@
+#Exercise 10a
+#1. Create a new DockerFile to install git on
+#Ubuntu 20.04
+#2. Use <CMD> to print the git version when
+#the container runs
+#3. Build the image
+#4. Try to get into the container
+
 FROM ubuntu:20.04
 
 RUN apt-get update
 RUN apt-get install -y git
+
 CMD git --version

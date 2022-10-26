@@ -28,8 +28,6 @@ while True:
     print(autor)
     #guardar la imagen en carpeta de Lisa
     
-   
-    
     time.sleep(3)
 
    elif autor == 'Homer Simpson':
