@@ -59,3 +59,9 @@ La mayoría de las herramientas son OpenSource.
 - Ventajas:
 Tomar decisiones más rápido.
 
+## Utilidad Big Data
+Fidelizacion Clientes
+Deportes alto nivel para fichar
+Marketing web
+Logistica
+Patrones de consumo en tiempo real
