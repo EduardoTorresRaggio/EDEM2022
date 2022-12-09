@@ -8,7 +8,7 @@
 - No es una base de datos
 
 ## Spark VS Hadoop
-- Spark se enfoca en el precsamiento de datos desde RAM
+- Spark se enfoca en el procesamiento de datos desde RAM
 - Posee un metodo de grafos
 
 ## Características de los RDD:

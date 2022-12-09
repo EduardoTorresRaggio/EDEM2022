@@ -1,5 +1,6 @@
 https://www.youtube.com/watch?v=nAJ-qlL0hNs&ab_channel=KeepCoding-TechSchool
 
+
 # KAFKA
 ## Introduccion
 Es un sistema de mensajeria entre un/unos productor/es y un/os consumidor/es
@@ -15,9 +16,12 @@ Cada mensaje que envia el productor, es atentido por cada suscriptor
 Una cola de mensaje es un topic
 
 ### Topic
-Un topic puede tener particiones, que sirve apra dividir un topic a lo largo de varios brokers y separar la infromacion
+Un topic puede tener particiones, que sirve para dividir un topic a lo largo de varios brokers y separar la infromacion
 Cada menaje tiene un identificador unico que es el offset
 Los ficheros son denominados logs
+
+### Logs
+
 
 ## Escalar Kafka
 - Si tenemos un kafka broker, por mucha particiones que le hagamos no aumentará su capacidad, por lo que es necesario incoporar otro para poder ser capaces de procesar los mensajes que le mande el producer
@@ -77,3 +81,15 @@ kafka-topic.sh --zookeeper localhost:2181 --create --topic topictest --partition
 - value.deserializer : clase utilizada para deserializar el payload del mensaje
 - group.id. :se utliliza para indicar que un consumidr pertenece a un grupo de consumidores
 
+# EJEMPLOS
+
+Distribucion Kafka con:
+- 1 Producer
+- 1 broker
+- 3 topics
+- n paticiones
+- n consumidores
+
+![](https://www.cloudkarafka.com/img/blog/apache-kafka-partition.png)
+
+![](https://miro.medium.com/max/1400/1*RQLzIEav1nSkSIbWH2KKwA.png)
